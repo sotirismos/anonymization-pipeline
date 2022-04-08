@@ -28,15 +28,14 @@ Download hdf model files:
 
 ## Depersonalization pipeline ##
 
----
 
 ### Two stage license plate detector ###
 
 In the first stage all bounding boxes associated with **car, truck, motorbike, bus** labels 
 are selected and cropped serving as regions of interest, then 
 in the second stage the cropped region of the original image is fed 
-to the custom model trained to detect license plates.
-This script returns α **pkl** file containing a list.
+to the custom model trained to detect **license plates**.
+This script returns a **pkl** file containing a list.
 This list can be used to calculate various [metrics](https://github.com/sotirismos/Object-Detection-Metrics).
 
 ---
@@ -46,7 +45,7 @@ a summary of its key/value pairs is presented below:
 
 | Key      | Value |
 | -------  | ----- |
-| det      | list of detected bboxes in imageai format|
+| det      | list of detected bboxes in [imageAI](https://github.com/OlafenwaMoses/ImageAI) format|
 | filename | the filename of the related image |
 | gt       | a list of ground truth objects |
 | matches  | a list of tupled index pairs |
@@ -84,22 +83,23 @@ Usage:
  python weights_to_h5.py --weights <path to .weights file> --hdf5 <path to .h5 file > --config <path to json configuration file>
 ```
 
+---
+
 ### Model files and configuration ###
 
 The table below describes the classes predicted by each model file
 
 | Model file | Class list | 
 | ---------- | ---------- |
-| [yolo.h5](https://bitbucket.org/datascouting/miscellaneous/src/master/models/yolo.h5) | MS COCO (80 classes, including cars) |
-| [yolov3_custom.h5](https://bitbucket.org/datascouting/miscellaneous/src/master/models/yolov3_custom.h5) | License plates |
+| [yolo.h5](https://github.com/sotirismos/GRUBLES/blob/master/models/yolo.h5) | MS COCO (80 classes, including cars) |
+| [yolov3_custom.h5](https://github.com/sotirismos/GRUBLES/blob/master/models/yolov3_custom.h5) | License plates |
 
 
 The table below describes the model - config file relations
 
 | Model file | Config file | 
 | ---------- | ----------  |
-| [street_yolov3.h5](https://bitbucket.org/datascouting/miscellaneous/src/master/models/street_yolov3.h5) | [street_config.json](https://bitbucket.org/datascouting/miscellaneous/src/master/config/street_config.json) |
-| [yolo.h5](https://bitbucket.org/datascouting/miscellaneous/src/master/models/yolo.h5) | [coco_config.json](https://bitbucket.org/datascouting/miscellaneous/src/master/config/coco_config.json) |
-| [yolov3_custom.h5](https://bitbucket.org/datascouting/miscellaneous/src/master/models/yolov3_custom.h5) | [darknet_config.json](https://bitbucket.org/datascouting/miscellaneous/src/master/config/darknet_config.json) |
+| [yolo.h5](https://github.com/sotirismos/GRUBLES/blob/master/models/yolo.h5) | [coco_config.json](https://github.com/sotirismos/GRUBLES/blob/master/configs/coco_config.json) |
+| [yolov3_custom.h5](https://github.com/sotirismos/GRUBLES/blob/master/models/yolov3_custom.h5) | [darknet_config.json](https://github.com/sotirismos/GRUBLES/blob/master/configs/darknet_config.json) |
 
 
