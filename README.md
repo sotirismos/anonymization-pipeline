@@ -102,4 +102,12 @@ The table below describes the model - config file relations
 | [yolo.h5](https://github.com/sotirismos/GRUBLES/blob/master/models/yolo.h5) | [coco_config.json](https://github.com/sotirismos/GRUBLES/blob/master/configs/coco_config.json) |
 | [yolov3_custom.h5](https://github.com/sotirismos/GRUBLES/blob/master/models/yolov3_custom.h5) | [darknet_config.json](https://github.com/sotirismos/GRUBLES/blob/master/configs/darknet_config.json) |
 
+---
+
+### Example plot ###
+
+
+![plot](https://github.com/sotirismos/GRUBLES/blob/master/plots/lp_blurring.jpg)
+
+
 
