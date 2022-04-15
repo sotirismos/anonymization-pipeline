@@ -70,16 +70,18 @@ def match_gen(iou, step, n):
 
     """
     iou_m = np.ma.array(iou, mask=False) # a masked array view of the iou array
-
+    #iou_m = np.array(iou)
+    
     for i in range(n):
         try: # exception handling of an out of bounds index
                 iou_view = iou_m[step*i:step*(i+1)] # ith det bbox pairs in the cart prod set
 
                 # gt bbox index of the pair with the max IoU among all non-zero and non-masked pairs
-                ind = iou_view.nonzero()[0][iou_view[iou_view>0].argmax()]
-
+                #ind = iou_view.nonzero()[0][iou_view[iou_view>0].argmax()]
+		ind = np.where(iou_view == max(iou_view[iou_view>0]))[0][0]
+		
                 # mask the selected index
-                iou_m.mask[ [step*i + ind for i in range(1,n)] ] = True
+                #iou_m.mask[ [step*i + ind for i in range(1,n)] ] = True
 
                 yield (i, ind) # yield the pair (index of det bbox, index of gt bbox)
         except ValueError:
