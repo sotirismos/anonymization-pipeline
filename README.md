@@ -109,5 +109,33 @@ The table below describes the model - config file relations
 
 ![plot](https://github.com/sotirismos/GRUBLES/blob/master/plots/lp_blurring.jpg)
 
+---
+
+### Face detection & blurring ###
+
+An edited version of the [deepface](https://github.com/serengil/deepface) library was used throughout this auxiliary task, with the requirements analyzed in **requirements.txt**.
+
+In order to use `face_detection.py`, we need to specify the directory containing the images we want to apply face detection and blurring and an output directory to store a **.pickle** file containing the detections in each image and the processed images after applying detection and blurring. More specifically,
+
+*Arguments*
+
+**Absolute path to directory containing the desired frames**
+```
+ --frames_dir 
+```
+**Absolute path to output directory**
+```
+ --save_dir 
+```
+
+The backend method used for face detection is **retinaface** and the threshold value for this method is 0.9 by default. Thus, the aforementioned arguments are fixed inside `face_detection.py`.
+The generated pickle file contains information about the detected faces of each image. More specifically, key-value pairs with the following structure are created:
+
+| Key      | Value |
+| -------  | ----- |
+| image_path      | Dictionary containing info about the **bboxes, confidence scores, face ids, frame idx and relative path** of each generated image|
+
+We store 1 single processed image for each image of interest. Thus, we're using the last element of the list containing the relative path of each generated image and we combine it with the argument *save_dir*.
+
 
 
