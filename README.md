@@ -137,5 +137,10 @@ The generated pickle file contains information about the detected faces of each 
 
 We store 1 single processed image for each image of interest. Thus, we're using the last element of the list containing the relative path of each generated image and we combine it with the argument *save_dir*.
 
+---
+
+### Example plot ###
+
+![plot](https://github.com/sotirismos/GRUBLES/blob/master/plots/face_blurring.png)
 
 
