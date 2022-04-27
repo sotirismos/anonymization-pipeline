@@ -29,7 +29,7 @@ Download hdf model files:
 ## Depersonalization pipeline ##
 
 
-### Two stage license plate detector ###
+### Two stage license plate detector for evaluation ###
 
 In the first stage all bounding boxes associated with **car, truck, motorbike, bus** labels 
 are selected and cropped serving as regions of interest, then 
@@ -55,17 +55,35 @@ a summary of its key/value pairs is presented below:
 Usage:
 
 ``` sh
-python two_stage_lp.py --thresh 0.5 
-					   --anno_dir <path to annotations directory> 
-					   --img_dir <path to images directory> 
-					   --config ./config/yolo_config.json ./config/yolov3_custom_config.json 
-					   --model ./models/yolo.h5 ./models/yolov3_custom.h5 
-					   --out_dir <output directory for the annotated images>
-					   --vehicle_thresh <vehicle detection threshold>
-					   --lp_thresh <lp detection threshold>
+python two_stage_lp.py  	--anno_dir <path to annotations directory> 
+				--img_dir <path to images directory> 
+				--config ./config/yolo_config.json ./config/yolov3_custom_config.json 
+				--model ./models/yolo.h5 ./models/yolov3_custom.h5 
+				--out_dir <output directory for the annotated images>
+				--vehicle_thresh <vehicle detection threshold>
+				--lp_thresh <lp detection threshold>
 ```
 
 ---
+
+### General two stage license plate detector ###
+Same as the script above, in the first stage all bounding boxes associated with **car, truck, motorbike, bus** labels 
+are selected and cropped serving as regions of interest, then 
+in the second stage the cropped region of the original image is fed 
+to the custom model trained to detect license plates.
+This script detects and blurs the license plates of all the vehicles
+in any single image.
+
+Usage:
+
+``` sh
+python inference.py 	--img_dir <full path to images directory> 
+			--config ../config/yolo_config.json ../config/yolov3_custom_config.json 
+			--model ../models/yolo.h5 ../models/yolov3_custom.h5 
+			--out_dir <full path of output directory for the annotated images and pickle file>
+			--vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
+			--lp_thresh <detection threshold for license plates>
+```
 
 ### Weights to HDF conversion ###
 
