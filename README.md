@@ -129,6 +129,30 @@ The table below describes the model - config file relations
 
 ---
 
+### General two stage license plate detector with pytorch ###
+Same as the scripts above, in the first stage all bounding boxes associated with car, truck, motorbike, bus labels 
+are selected and cropped serving as regions of interest, then 
+in the second stage the cropped region of the original image is fed 
+to the custom model trained to detect license plates.
+This script detects and blurs the license plates of all the vehicles
+in any single image. The only difference with the 1st approach that utilizes [ImageAI](https://github.com/OlafenwaMoses/ImageAI)
+and tensorflow is the models and the config files. This approach utilizes [mmdetection](https://github.com/open-mmlab/mmdetection)
+and pytorch.
+
+Usage:
+
+``` sh
+python inference_mmdetection.py --img_dir <full path to images directory> 
+			        			--config ../mmdetection/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py 
+								 ../mmdetection/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py
+			        			--model  ../mmdetection/checkpoints/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.pth
+								 ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
+			        			--out_dir <full path of output directory for the blurred images>
+			        			--vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
+			        			--lp_thresh <detection threshold for license plates>
+```
+---
+
 ### Face detection & blurring ###
 
 An edited version of the [deepface](https://github.com/serengil/deepface) library was used throughout this auxiliary task, with the requirements analyzed in **requirements.txt**.
