@@ -55,13 +55,13 @@ a summary of its key/value pairs is presented below:
 Usage:
 
 ``` sh
-python two_stage_lp.py  	--anno_dir <path to annotations directory> 
-				--img_dir <path to images directory> 
-				--config ./config/yolo_config.json ./config/yolov3_custom_config.json 
-				--model ./models/yolo.h5 ./models/yolov3_custom.h5 
-				--out_dir <output directory for the detections of the annotated images and corresponding pickle file>
-				--vehicle_thresh <vehicle detection threshold>
-				--lp_thresh <lp detection threshold>
+python two_stage_lp.py  --anno_dir <path to annotations directory> 
+			--img_dir <path to images directory> 
+			--config ./config/yolo_config.json ./config/yolov3_custom_config.json 
+			--model ./models/yolo.h5 ./models/yolov3_custom.h5 
+			--out_dir <output directory for the detections of the annotated images and corresponding pickle file>
+			--vehicle_thresh <vehicle detection threshold>
+			--lp_thresh <lp detection threshold>
 ```
 
 ---
@@ -77,12 +77,12 @@ in any single image.
 Usage:
 
 ``` sh
-python inference.py 	--img_dir <full path to images directory> 
-			--config ../config/yolo_config.json ../config/yolov3_custom_config.json 
-			--model ../models/yolo.h5 ../models/yolov3_custom.h5 
-			--out_dir <full path of output directory for the blurred images>
-			--vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
-			--lp_thresh <detection threshold for license plates>
+python inference.py  --img_dir <full path to images directory> 
+		     --config ../config/yolo_config.json ../config/yolov3_custom_config.json 
+		     --model ../models/yolo.h5 ../models/yolov3_custom.h5 
+		     --out_dir <full path of output directory for the blurred images>
+		     --vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
+		     --lp_thresh <detection threshold for license plates>
 ```
 
 ### Weights to HDF conversion ###
@@ -142,14 +142,14 @@ and pytorch.
 Usage:
 
 ``` sh
-python inference_mmdetection.py --img_dir <full path to images directory> 
-			        			--config ../mmdetection/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py 
-								 ../mmdetection/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py
-			        			--model  ../mmdetection/checkpoints/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.pth
-								 ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
-			        			--out_dir <full path of output directory for the blurred images>
-			        			--vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
-			        			--lp_thresh <detection threshold for license plates>
+python inference_mmdetection.py  --img_dir <full path to images directory> 
+			         --config ../mmdetection/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py 
+					  ../mmdetection/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py
+			         --model  ../mmdetection/checkpoints/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.pth
+					  ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
+			         --out_dir <full path of output directory for the blurred images>
+			        	  --vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
+			        	  --lp_thresh <detection threshold for license plates>
 ```
 ---
 
