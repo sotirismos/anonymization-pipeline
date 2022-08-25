@@ -129,6 +129,51 @@ The table below describes the model - config file relations
 
 ---
 
+## Depersonalization pipeline with PyTorch ##
+
+
+### Two stage license plate detector for evaluation ###
+
+In the first stage all bounding boxes associated with **car, truck, motorbike, bus** labels 
+are selected and cropped serving as regions of interest, then 
+in the second stage the cropped region of the original image is fed 
+to the custom model trained to detect **license plates**.
+This script returns a **pkl** file containing a list.
+This list can be used to calculate various [metrics](https://github.com/sotirismos/Object-Detection-Metrics).
+The only difference with the 1st approach that utilizes [ImageAI](https://github.com/OlafenwaMoses/ImageAI)
+and tensorflow in the models and the config files. This approach utilizes [mmdetection](https://github.com/open-mmlab/mmdetection)
+and pytorch.
+
+---
+Each list element is a dictionary that contains information about
+the detected and ground truth objects in an image,
+a summary of its key/value pairs is presented below:
+
+| Key      | Value |
+| -------  | ----- |
+| det      | list of detected bboxes in [imageAI](https://github.com/OlafenwaMoses/ImageAI) format, converted from mmdetection format to ImageAI|
+| filename | the filename of the related image |
+| gt       | a list of ground truth objects |
+| matches  | a list of tupled index pairs |
+
+---
+
+Usage:
+
+``` sh
+python two_stage_lp.py  --anno_dir <path to annotations directory> 
+			--img_dir <full path to images directory> 
+			--config ../mmdetection/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py 
+				 ../mmdetection/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py
+			--model  ../mmdetection/checkpoints/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.pth
+				 ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
+			--out_dir <full path of output directory for the blurred images>
+			--vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
+			--lp_thresh <detection threshold for license plates>
+```
+
+---
+
 ### General two stage license plate detector with pytorch ###
 Same as the scripts above, in the first stage all bounding boxes associated with car, truck, motorbike, bus labels 
 are selected and cropped serving as regions of interest, then 
@@ -136,7 +181,7 @@ in the second stage the cropped region of the original image is fed
 to the custom model trained to detect license plates.
 This script detects and blurs the license plates of all the vehicles
 in any single image. The only difference with the 1st approach that utilizes [ImageAI](https://github.com/OlafenwaMoses/ImageAI)
-and tensorflow is the models and the config files. This approach utilizes [mmdetection](https://github.com/open-mmlab/mmdetection)
+and tensorflow in the models and the config files. This approach utilizes [mmdetection](https://github.com/open-mmlab/mmdetection)
 and pytorch.
 
 Usage:
@@ -148,9 +193,35 @@ python inference_mmdetection.py  --img_dir <full path to images directory>
 			         --model  ../mmdetection/checkpoints/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.pth
 					  ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
 			         --out_dir <full path of output directory for the blurred images>
-			        	  --vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
-			        	  --lp_thresh <detection threshold for license plates>
+			         --vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
+			         --lp_thresh <detection threshold for license plates>
 ```
+---
+
+### Model files and configuration ###
+
+The table below describes the classes predicted by each model file
+
+| Model file | Class list | 
+| ---------- | ---------- |
+| Pretrained on BDD100K | BDD100K (10 classes) |
+| Custom | License plates |
+
+
+The table below describes the model - config file relations
+
+| Model file | Config file | 
+| ---------- | ----------  |
+| Pretrained on BDD100K | [cascade_rcnn_r50_fpn_1x_det_bdd100k.py](https://github.com/sotirismos/GRUBLES-mmdetection/blob/master/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py) |
+| Custom | [detectors_cascade_rcnn_r50_1x_custom_lp.py ](https://github.com/sotirismos/GRUBLES-mmdetection/blob/master/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py) |
+
+---
+
+### Example plot ###
+
+
+![plot](https://github.com/sotirismos/GRUBLES-Depersonalization-pipeline/blob/pytorch-mmdetection/plots/lp_blurring_mmdetection.jpg)
+
 ---
 
 ### Face detection & blurring ###
