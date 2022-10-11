@@ -220,7 +220,7 @@ The table below describes the model - config file relations
 ### Example plot ###
 
 
-![plot](https://github.com/sotirismos/GRUBLES-Depersonalization-pipeline/blob/pytorch-mmdetection/plots/lp_blurring_mmdetection.jpg)
+![plot](https://github.com/sotirismos/GRUBLES-Depersonalization-pipeline/blob/master/plots/lp_blurring_mmdetection.jpg)
 
 ---
 
