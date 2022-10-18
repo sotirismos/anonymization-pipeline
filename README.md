@@ -256,4 +256,10 @@ We store 1 single processed image for each image of interest. Thus, we're using 
 
 ![plot](https://github.com/sotirismos/GRUBLES/blob/master/plots/face_blurring.png)
 
+---
+
+### Full Depersonalization example plot ###
+
+![plot](https://github.com/sotirismos/GRUBLES/blob/master/plots/full_pipeline.png)
+
 
