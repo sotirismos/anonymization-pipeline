@@ -171,6 +171,42 @@ python two_stage_lp.py  --anno_dir <path to annotations directory>
 			--vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
 			--lp_thresh <detection threshold for license plates>
 ```
+---
+
+### One stage license plate detector for evaluation ###
+
+This script skips the first stage that detects all the vehicles.
+Here, the original image is fed to the custom model trained to detect **license plates**.
+This script returns a **pkl** file containing a list.
+This list can be used to calculate various [metrics](https://github.com/sotirismos/Object-Detection-Metrics).
+The only difference with the 1st approach that utilizes [ImageAI](https://github.com/OlafenwaMoses/ImageAI)
+and tensorflow in the models and the config files. This approach utilizes [mmdetection](https://github.com/open-mmlab/mmdetection)
+and pytorch.
+
+---
+Each list element is a dictionary that contains information about
+the detected and ground truth objects in an image,
+a summary of its key/value pairs is presented below:
+
+| Key      | Value |
+| -------  | ----- |
+| det      | list of detected bboxes in [imageAI](https://github.com/OlafenwaMoses/ImageAI) format, converted from mmdetection format to ImageAI|
+| filename | the filename of the related image |
+| gt       | a list of ground truth objects |
+| matches  | a list of tupled index pairs |
+
+---
+
+Usage:
+
+``` sh
+python one_stage_lp.py  --anno_dir <path to annotations directory> 
+			--img_dir <full path to images directory> 
+			--config ../mmdetection/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py
+			--model  ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
+			--out_dir <full path of output directory for the blurred images>
+			--lp_thresh <detection threshold for license plates>
+```
 
 ---
 
@@ -196,6 +232,26 @@ python inference_mmdetection.py  --img_dir <full path to images directory>
 			         --vehicle_thresh <detection threshold for cars, trucks, motorbikes, buses>
 			         --lp_thresh <detection threshold for license plates>
 ```
+---
+
+### General one stage license plate detector with pytorch ###
+This script skips the first stage that detects all the vehicles.
+Here, the original image is fed to the custom model trained to detect **license plates**.
+This script detects and blurs the license plates of all the vehicles
+in any single image. The only difference with the 1st approach that utilizes [ImageAI](https://github.com/OlafenwaMoses/ImageAI)
+and tensorflow in the models and the config files. This approach utilizes [mmdetection](https://github.com/open-mmlab/mmdetection)
+and pytorch.
+
+Usage:
+
+``` sh
+python inference_mmdetection_one_stage_lp.py  --img_dir <full path to images directory> 
+			         	      --config  ../mmdetection/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py
+			         	      --model   ../mmdetection/checkpoints/detectors_cascade_rcnn_r50_1x_custom_lp/best_bbox_mAP_epoch_6.pth
+			         	      --out_dir <full path of output directory for the blurred images>
+			         	      --lp_thresh <detection threshold for license plates>
+```
+
 ---
 
 ### Model files and configuration ###
