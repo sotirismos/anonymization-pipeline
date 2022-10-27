@@ -121,6 +121,6 @@ if __name__ == "__main__":
         mdict["det"] = detections_lp[i]
         mdict["gt"] = [dict({"bbox": bbox, "class": r"LicensePlate"}) for bbox in bboxes[i]]
         mdict_list.append(mdict)
-    pkl_file_outpath = os.path.join(out_dir, 'mdict_list_mmdetection.pkl')
+    pkl_file_outpath = os.path.join(out_dir, 'mdict_list_one_stage_mmdetection.pkl')
     with open(pkl_file_outpath, 'wb') as handle:
         pickle.dump(mdict_list, handle, protocol=pickle.HIGHEST_PROTOCOL)
