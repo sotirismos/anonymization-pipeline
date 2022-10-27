@@ -268,8 +268,8 @@ The table below describes the model - config file relations
 
 | Model file | Config file | 
 | ---------- | ----------  |
-| Pretrained on BDD100K | [cascade_rcnn_r50_fpn_1x_det_bdd100k.py](https://github.com/sotirismos/GRUBLES-mmdetection/blob/master/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py) |
-| Custom | [detectors_cascade_rcnn_r50_1x_custom_lp.py ](https://github.com/sotirismos/GRUBLES-mmdetection/blob/master/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py) |
+| Pretrained on BDD100K | [cascade_rcnn_r50_fpn_1x_det_bdd100k.py](https://github.com/sotirismos/mmdetection/blob/grubles/configs/bdd100k/cascade_rcnn_r50_fpn_1x_det_bdd100k.py) |
+| Custom | [detectors_cascade_rcnn_r50_1x_custom_lp.py ](https://github.com/sotirismos/mmdetection/blob/grubles/configs/custom/detectors_cascade_rcnn_r50_1x_custom_lp.py) |
 
 ---
 
