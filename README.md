@@ -273,6 +273,9 @@ The table below describes the model - config file relations
 
 ---
 
+### One stage vs two stage license plate detection ###
+---
+
 ### Example plot ###
 
 
