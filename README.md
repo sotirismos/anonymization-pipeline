@@ -274,6 +274,9 @@ The table below describes the model - config file relations
 ---
 
 ### One stage vs two stage license plate detection ###
+
+Although one stage license plate detection is much faster than the two stage approach, we proceeded with the latter technique. After evaluating the two approaches empirically in the dataset collected during the GRUBLES project (containing street scene videos of central Thessaloniki), the one stage appoach detected many shop signs as traffic signs, resulting to a large number of *False Positives*. Many solutions, such as setting and tuning a bbox area threshold were tested, but still, the two stage approach provided the more accurate results.  
+
 ---
 
 ### Example plot ###
